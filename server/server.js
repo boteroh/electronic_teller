@@ -1,13 +1,19 @@
 import express, { json } from 'express';
 import dbconnet from '../db/config.js';
-// import accountRouter from "../routes/account_route.js";
+import accountRouter from "../routes/account_route.js";
 
 class Server {
     constructor() {
         this.app = express();
+        this.pathAccount = "/";
         this.listen();
         this.dbconnection();
-        // this.route();
+        this.route();
+    };
+
+    route() {
+        this.app.use(json());
+        this.app.use(this.pathAccount, accountRouter);
     };
 
 
