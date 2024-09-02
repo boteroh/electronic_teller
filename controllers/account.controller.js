@@ -38,10 +38,25 @@ export async function postAccount (req, res) {
     res.json({ msg: msg });
 };
 
+// POST ===> DESPOSIT
+// export async function depositAccount (req, res) {
+//     let msg = "Deposit succesfull";
+//     try {
+//         const { account_balance } = req.body;
+//         const account = await Accounts.findByIdAndUpdate(req.params.id);
+//         if (account_balance >= 0) {
+
+//         }
+//     } catch (error) {
+        
+//     }
+// };
+
 // PUT ===> UPDATE ACCOUNT
 export async function updateAccount (req, res) {
+    let msg = "Account updated";
     try {
-        const account = await Accounts.findByIdAndUpdate();
+
     } catch (error) {
         
     }
