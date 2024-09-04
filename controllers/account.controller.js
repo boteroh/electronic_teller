@@ -38,27 +38,27 @@ export async function postAccount (req, res) {
     res.json({ msg: msg });
 };
 
-// POST ===> DESPOSIT
-// export async function depositAccount (req, res) {
-//     let msg = "Deposit succesfull";
-//     try {
-//         const { account_balance } = req.body;
-//         const account = await Accounts.findByIdAndUpdate(req.params.id);
-//         if (account_balance >= 0) {
-
-//         }
-//     } catch (error) {
-        
-//     }
-// };
-
-// PUT ===> UPDATE ACCOUNT
-export async function updateAccount (req, res) {
-    let msg = "Account updated";
+// PUT ===> DESPOSIT
+export async function depositAccount (req, res) {
+    
     try {
-
+        const { account_number, giveme_money } = req.body;
+        if (!account_number || !giveme_money) {
+            res.status(400).json({ message: 'Incomplete value' });
+        }
+        if ( giveme_money <= 0 ) {
+            res.status(400).json({ message: 'Please provide a value greater than 0 for deposit.' });
+        } else {
+            const account = await Accounts.findOne({ account_number: account_number});
+            if ( !account ) {
+                res.status(500).json({ message: "can't connecto to database" });
+            }
+            account.account_balance += giveme_money;
+            const result = await account.save();
+            res.status(200).json({ message: result });
+        }
     } catch (error) {
-        
+        res.status(500).json({ message: error.message });
     }
 };
 
