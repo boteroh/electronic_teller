@@ -23,6 +23,11 @@ const accountSchema = new Schema({
   password: {
     type: String,
   },
+
+  observations: {
+    type: String,
+    maxlength: 255
+  }
 });
 
 accountSchema.pre("save", async function (next) {

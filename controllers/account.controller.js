@@ -54,7 +54,7 @@ export async function depositAccount (req, res) {
     
     try {
         const { account_number, giveme_money } = req.body;
-        if (!account_number || !giveme_money) {
+        if (!account_number || !giveme_money ) {
             res.status(400).json({ message: 'Incomplete values' });
         }
         if ( giveme_money <= 0 ) {
@@ -109,7 +109,7 @@ export async function deleteAccount (req, res) {
         const { account_number } = req.body;
         if ( !account_number ) {
             return res.status(404).json({ message: 'Account no found' });
-        }       
+        }   
 
         const account = await Accounts.findOne({ account_number: account_number });
 
