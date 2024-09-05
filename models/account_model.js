@@ -17,6 +17,7 @@ const accountSchema = new Schema({
 
   account_balance: {
     type: Number,
+    default: 0
   },
 
   password: {
